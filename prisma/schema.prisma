@@ -6,6 +6,77 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(45)
+  email String @db.VarChar(45) @unique
+  password String @db.VarChar(61)
+  birthday DateTime? @db.Date
+  role Role @default(NORMAL)
+  isActive Boolean @default(true)
+  activeOrder Order[]
+  address Address?
+}
+
+model Address{
+  id Int @id @default(autoincrement())
+  country String
+  state String
+  city String
+  street String
+  number Int
+  zipCode Int
+  user User @relation(fields: [userID], references: [id], onDelete: Cascade)
+  userID Int @unique
+}
+
+enum Role{
+  NORMAL
+  ADMIN
+}
+
+model Food{
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(45)
+  price Float
+  description String
+  image String
+  categories FoodCategories[] 
+  order FoodOrder[]
+}
+
+model Category{
+  id Int @id @default(autoincrement())
+  name String
+  food FoodCategories[]
+}
+
+model FoodCategories {
+  // fields: Campos de esta tabla
+  // references: Crea una referencia a un campo de otra tabla
+  food Food @relation(fields: [foodID], references: [id], onDelete: Cascade)
+  foodID Int
+  category Category @relation(fields:[categoryID],references: [id], onDelete: Cascade)
+  categoryID Int
+  @@id([foodID,categoryID])
+}
+
+model Order{
+  id Int @id @default(autoincrement())
+  completed Boolean
+  user User @relation(fields: [userID], references: [id], onDelete: Cascade)
+  userID Int
+  food FoodOrder[]
+}
+
+model FoodOrder{
+  food Food @relation(fields: [foodID], references: [id], onDelete: Cascade)
+  foodID Int
+  order Order @relation(fields: [orderID], references: [id], onDelete: Cascade)
+  orderID Int
+  @@id([foodID,orderID])
 }
