@@ -1,0 +1,22 @@
+<header>
+    <a href="#" class="logo"><i class="fas fa-utensils"></i>food</a>
+    <% if (locals.user && locals.user.loggedIn) { %>
+        <a class="logo">
+            <span>Bienvenido: </span><b><%= user.name %></b>
+        </a>
+    <% } %>
+    <div id="menu-bar" class="fas fa-bars"></div>
+    <nav class="navbar">
+        <a href="/">Home</a>
+        <a href="#speciality">Foods</a>
+        
+        <% if (locals.user && locals.user.loggedIn) { %>
+            <a href="#popular">Orders</a>
+            <a href="/auth/logout">Logout</a>
+            
+        <% }else{%> 
+            <a href="/auth/login">SignIn</a>
+        <% }%> 
+        <!-- <a href="#order">order</a> -->
+    </nav>
+</header>

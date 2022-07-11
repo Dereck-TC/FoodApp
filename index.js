@@ -21,7 +21,7 @@ app.use(expressLayouts);
 app.use(addSessionToTemplate());
 
 // app.use("/admin/users",users);
-// app.use("/auth",auth);
+app.use("/auth",auth);
 // app.use("/orders",orders);
 // app.use("/food",food);
 

@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Dereck-TC/FoodApp#readme",
   "dependencies": {
+    "@prisma/client": "^4.0.0",
     "bcrypt": "^5.0.1",
     "dotenv": "^16.0.1",
     "ejs": "^3.1.8",
