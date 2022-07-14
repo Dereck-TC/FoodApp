@@ -50,7 +50,11 @@
                     <i class="fas fa-star"></i>
                     <i class="far fa-star"></i>
                 </div>
-                <a href="#" class="btn">order now</a>
+                <% if (locals.user && locals.user.loggedIn && user.role==="ADMIN") { %>
+                    <a href="/edit/<%= dish.id %>" class="btn">Editar</a>
+                    <a href="/delete/<%= dish.id %>" class="btn">Eliminar</a>
+                <% } %>
+                <a href="/orders/add/<%= dish.id %>" class="btn">order now</a>
             </div>
         <% }) %>
         <!-- <div class="box">

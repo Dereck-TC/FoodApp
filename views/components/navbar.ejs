@@ -11,12 +11,15 @@
         <a href="#speciality">Foods</a>
         
         <% if (locals.user && locals.user.loggedIn) { %>
-            <a href="#popular">Orders</a>
-            <a href="/addFood">Dashboard</a>
+            <a href="/orders">Orders</a>
+            <% if (user.role==="ADMIN") { %>
+                <a href="/addFood">Admin</a>
+            <% } %>
             <a href="/auth/logout">Logout</a>
             
         <% }else{%> 
             <a href="/auth/login">SignIn</a>
+            <a href="/auth/signup">SignUp</a>
         <% }%> 
         <!-- <a href="#order">order</a> -->
     </nav>

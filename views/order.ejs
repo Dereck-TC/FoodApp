@@ -1,0 +1,24 @@
+<section class="order" id="order">
+    <div class="row">     
+        <div class="image">
+            <img src="/images/order-img.jpg" alt="">
+        </div>
+
+        <form action="/auth/login" method="post">
+            <h1 class="heading"> <span>Login</span> now </h1>
+            <% order.food.forEach(order => {%> 
+            <div class="inputBox">
+                <span><%= order.foodID %></span>                         
+            </div>
+            <% })  %> 
+        
+            <div class="inputBox">  
+                <input type="password" name="password" placeholder="password">
+            </div>        
+            <input type="submit" value="login" class="btn">
+        </form>
+        <% if (locals.error) { %>
+            <p><%=message%> </p>
+        <% } %> 
+    </div>
+</section>

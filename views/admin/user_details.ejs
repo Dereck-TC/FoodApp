@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/menu.css">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <title>Document</title>
+</head>
+<body>
+    <%- include("../components/navadmin") %>
+    <section class="order" id="order">
+        <div class="row">     
+            <!-- <div class="image">
+                <img src="/images/order-img.jpg" alt="">
+            </div> -->
+    
+            <form action="/admin/users/<%= user.id %>" method="post">
+                <h1 class="heading"> <span>Update</span> User </h1>
+                <div class="inputBox">
+                    <input class="addfood" type="text" name="name" placeholder="name" value="<%= user.name %>">       
+                    <input class="addfood"type="email" name="email" placeholder="email" value="<%= user.email %>">           
+                </div>
+                <div class="inputBox">
+                    <input class="addfood" type="date" value="<%= user.birthday %>" name="birthday" id="birthday">
+                    <input class="addfood" type="checkbox" <%= user.isActive ? "checked" : "" %> name="isActive" id="active">            
+                </div> 
+                     
+                <input type="submit" value="Update user" class="btn">
+            </form>
+        </div>
+    </section>
+</body>
+</html>

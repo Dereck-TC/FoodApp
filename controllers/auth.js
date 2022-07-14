@@ -1,6 +1,6 @@
 const client = require("../libs/db");
 const {encrypt, compare} = require("../helpers/helpers");
-const { user } = require("../libs/db");
+// const { user } = require("../libs/db");
 
 class AuthController{
     
@@ -14,12 +14,15 @@ class AuthController{
             //creamos el nuevo usuario con los datos del body
             const user = await client.user.create({
                 data:{
-                    name,email,password:await encrypt(password),birthday:new Date(birthday),
+                    name,
+                    email,
+                    password:await encrypt(password),
+                    birthday:new Date(birthday),
                     orders:{
                         create:{
                             completed:false
                         }
-                    }
+                    },
                 },
                 //incluimos orders
                 include:{
@@ -43,8 +46,9 @@ class AuthController{
                 loggedIn : true,
                 ...userWithOrder
             };
-            return res.render("/"); 
+            return res.redirect ("/"); 
         } catch (error) {
+            console.log(error);
             return res.render("signup");
         }
         
@@ -58,9 +62,10 @@ class AuthController{
         const {email,password} = req.body;
         const user = await client.user.findUnique({
             where:{
-                email
+                email:email
             }
         });
+        console.log(user);
         if(user && await compare(password,user.password)){
             delete user.password;
             req.session.user = {

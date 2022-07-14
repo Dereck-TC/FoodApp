@@ -18,7 +18,8 @@ model User {
   birthday DateTime? @db.Date
   role Role @default(NORMAL)
   isActive Boolean @default(true)
-  activeOrder Order[]
+  activeOrder Int?
+  orders Order[]
   address Address?
 }
 

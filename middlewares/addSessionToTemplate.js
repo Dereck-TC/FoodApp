@@ -3,7 +3,7 @@ function addSessionToTemplate(config){
         const user = req.session.user;
         res.locals.user = user;
         next();
-    }
+    };
 }
 
 module.exports = addSessionToTemplate;

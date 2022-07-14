@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/menu.css">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <title>Document</title>
+</head>
+<body>
+    <%- include("../components/navadmin") %>
+    <section class="order" id="order">
+        <div class="row">     
+            <!-- <div class="image">
+                <img src="/images/order-img.jpg" alt="">
+            </div> -->
+            <% food.categories = food.categories.map(item=>{
+                return item.categoryID
+            }) %> 
+            <form action="/edit/<%= food.id %>" method="post">
+                <h1 class="heading"> <span>New</span> Food </h1>
+                <div class="inputBox">
+                    <input class="addfood" type="text" name="name" placeholder="name" value="<%= food.name %>">       
+                    <input class="addfood"type="number" name="price" placeholder="price" value="<%= food.price %>">           
+                </div>
+                <textarea type="text" name="description" placeholder="description" ><%= food.description %></textarea>
+                <div class="inputBox">
+                    <select name="categories" multiple>
+                        <option value="no-category"  <%= food.categories.length===0 ? "selected" : "" %> >No category</option>
+                        <% categories.forEach(category => { %>
+                            <option value="<%= category.id %>" <%= food.categories.includes(category.id) ? "selected" : "" %> ><%= category.name %> </option>
+                        <% }) %>
+                        <input class="addfood"type="text" name="image" placeholder="image" value="<%= food.image %>">  
+                    </select>              
+                </div> 
+                     
+                <input type="submit" value="Edit Food" class="btn">
+            </form>
+            <% %>
+        </div>
+    </section>

@@ -16,7 +16,7 @@
                 <img src="/images/order-img.jpg" alt="">
             </div> -->
     
-            <form action="/auth/login" method="post">
+            <form action="/addFood" method="post" enctype="multipart/form-data">
                 <h1 class="heading"> <span>New</span> Food </h1>
                 <div class="inputBox">
                     <input class="addfood" type="text" name="name" placeholder="name">       
@@ -26,13 +26,16 @@
                 <div class="inputBox">
                     <select name="categories" >
                         <option value="no-category" selected>No category</option>
-                        
+                        <% categories.forEach(category => { %>
+                            <option value="<%= category.id %> "><%= category.name %> </option>
+                        <% }) %>
+                        <input class="addfood"type="file" name="image" placeholder="image">  
                     </select>              
                 </div> 
                      
                 <input type="submit" value="Add Food" class="btn">
             </form>
-            
+            <% %>
         </div>
     </section>
 </body>

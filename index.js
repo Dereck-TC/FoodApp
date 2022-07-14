@@ -3,6 +3,8 @@ const { port, sessionSecret } = require("./config/config");
 const path = require("path");
 const expressLayouts = require("express-ejs-layouts");
 const session  = require("express-session");
+const {flash} = require("express-flash-message");
+// const multer = require("multer");
 
 //Routes
 const users = require("./routes/users");
@@ -19,10 +21,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(session({ secret: sessionSecret, saveUninitialized: false, resave: false }));
 app.use(expressLayouts);
 app.use(addSessionToTemplate());
+app.use(flash({sessionKeyName: "flashMessage"}));
+// app.use(multer({dest: path.join(__dirname,"uploads")}));
 
-// app.use("/admin/users",users);
+app.use("/admin/users",users);
 app.use("/auth",auth);
-// app.use("/orders",orders);
+app.use("/orders",orders);
 app.use("/",food);
 
 //viewengines

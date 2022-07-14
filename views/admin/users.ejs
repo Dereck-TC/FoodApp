@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/menu.css">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    <title>Document</title>
+</head>
+<body>
+    <%- include("../components/navadmin") %>
+    <section class="order" id="order" style="padding-left: 300px;">
+        <div class="row" style="width: 850px; font-size: 17px;">     
+            <table id="myTable" class="display" style="width: 800px; ">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>email</th>
+                        <th>birthday</th>
+                        <th>status</th>
+                        <th>actions</th>
+                    </tr>                
+                </thead>
+                <tbody>
+                    <% users.forEach(user=>{%>
+                    <tr>
+                        
+                        <td><%= user.id %></td>          
+                        <td><%= user.name %></td>                   
+                        <td><%= user.email %></td>                    
+                        <td><%= user.birthday %></td>                    
+                        <td><%= user.isActive %></td>
+                        <td>
+                            <a href="/admin/users/delete/<%= user.id %>" class="btn" >x</a>
+                            <a href="/admin/users/<%= user.id %>" class="btn" >/</a>
+                        </td>
+                        
+                    </tr>
+                    <% })  %> 
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready( function () {
+            $('#myTable').DataTable();
+        } );
+    </script>
