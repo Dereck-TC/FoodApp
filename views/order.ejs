@@ -10,7 +10,7 @@
         
         <form>
             <h1 class="heading"> <span>My</span> Orders </h1>
-            <%if(order.food > 0){%> 
+            <%if(order.food.length > 0){%> 
                 <% food.forEach(foodorder => {%> 
                 <div class="inputBox">
                     <h2><span><%= order.food.includes(foodorder.id) ? foodorder.name : "" %></span>  </h2>     

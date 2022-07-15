@@ -21,3 +21,5 @@ Funcionalidades clave:
     Categorías de platillos (Comida mexicana, argentina, china, entrada, postre o plato fuerte)
     Un usuario podrá agregar sus platillos a su orden de compra y podrá marcar esa orden como completada y podrá verla en su perfil.
     Panel de administración: Nos permitirá realizar las operaciones CRUD de platillos y categorías. Opcional: Listar los pedidos realizados.
+
+    https://images.aws.nestle.recipes/resized/e89d19d331ac413811e3b1c11a893991_torta-princesa_1200_600.jpg

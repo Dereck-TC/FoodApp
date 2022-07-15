@@ -18,7 +18,7 @@ class OrdersController{
         });
         // order.food.forEach(order => {
         const food = await client.food.findMany();
-        // console.log(order);
+        console.log(order);
         // console.log(food);
         return res.render("order",{
             order,food
@@ -127,7 +127,7 @@ class OrdersController{
             //creamos la consulta para actualizar la orden donde el id es el activeOrder del usuario
             const sql = await client.order.update({
                 where:{
-                    id:activeOrder
+                    id:activeOrder   
                 },
                 data:{
                     food:{

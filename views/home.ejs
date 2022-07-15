@@ -27,7 +27,7 @@
             <a href="/<%= category.id%>" class="btn"><%= category.name %></a>
             
         <% }) %>
-        <a href="#" class="btn">All foods</a>
+        <a href="/0" class="btn">All foods</a>
 
     </div>
 
@@ -40,10 +40,13 @@
 <section class="popular" id="popular">
 
     <h1 class="heading"> Our <span>All</span> foods </h1>
-
+    <!-- <--% category.food = category.food.map(item=>{
+        return item.foodID
+    })%> -->
     <div class="box-container">
         <% food.forEach(dish => { %> 
             <div class="box">
+                <!-- <span class="price"> $<-%= category.food.includes(dish.id) ? dish.price : ""%> </span> -->
                 <span class="price"> $<%= dish.price %> </span>
                 <!-- <img src="images/p-1.jpg" alt=""> -->
                 <img src="<%= dish.image %> " alt="">

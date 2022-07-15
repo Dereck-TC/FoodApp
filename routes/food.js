@@ -9,7 +9,7 @@ const router = Router();
 // }));
 
 router.get("/",FoodController.getAll);
-router.get("/:id",FoodController.getFilterFood);
+// router.get("/:id",FoodController.getFilterFood);
 router.get("/addFood",FoodController.getAddForm);
 router.post("/addFood",FoodController.add);
 router.get("/edit/:id",FoodController.getEditForm);

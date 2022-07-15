@@ -15,40 +15,51 @@ class FoodController{
             }
         });
         const categories = await client.category.findMany();
-        console.log(food);
+        // console.log(food);
         return res.render("home",{
             food,categories
         });
     }
 
-    static async getFilterFood(req,res){
-        const category = await client.category.findUnique({
-            where:{
-                id:1
-            }, 
-            include:{
-                categories:{
-                    include:{
-                        food:true
-                    }
-                }
-            }
-        });
-        const food = await client.food.findMany({
-            include:{
-                categories:{
-                    include:{
-                        category:true
-                    }
-                }
-            }
-        });
-        const categories = await client.category.findMany();
-        //console.log(food);
-        return res.render("home",{
-            food,category,categories
-        });
-    }
+    // static async getFilterFood(req,res){
+    //     const {id} = req.params;
+    //     // const category = 0;
+    //     // const food = 0;
+    //     // if(id!==0){
+    //     console.log(id);
+    //     const category = await client.category.findUnique({
+    //         where:{
+    //             id:parseInt(id)
+    //         }, 
+    //         include:{
+    //             food:{
+    //                 include:{
+    //                     food:true
+    //                 }
+    //             }
+    //         }
+    //     });
+    // // }else{
+        
+    //     const food = await client.food.findMany({
+    //         include:{
+    //             categories:{
+    //                 include:{
+    //                     category:true
+    //                 }
+    //             }
+    //         }
+    //     });
+    //     // }
+    //     const categories = await client.category.findMany();
+       
+    //     //const categories = await client.category.findMany();
+    //     //console.log(food);
+    //     console.log(food,categories,category);
+    //     return res.render("home",{
+    //         food,category,categories
+    //     });
+    // }
 
     static async getAddForm(req, res){
         const categories = await client.category.findMany();

@@ -26,7 +26,7 @@
                 </div>
                 <textarea type="text" name="description" placeholder="description" ><%= food.description %></textarea>
                 <div class="inputBox">
-                    <select name="categories" multiple>
+                    <select name="categories">
                         <option value="no-category"  <%= food.categories.length===0 ? "selected" : "" %> >No category</option>
                         <% categories.forEach(category => { %>
                             <option value="<%= category.id %>" <%= food.categories.includes(category.id) ? "selected" : "" %> ><%= category.name %> </option>
