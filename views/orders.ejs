@@ -1,3 +1,29 @@
-<h1>Completed orders</h1>
-
-<% console.log(orders) %> 
+<section class="order" id="order">
+    <div class="row">     
+        <div class="image">
+            <img src="/images/orders.png" alt="">
+        </div>    
+        <form>
+            <h1 class="heading"> <span>My</span> Orders Completed </h1>
+            <%if(orders.length > 0){%> 
+                <% orders.forEach(orders => {%> 
+                <div class="inputBox">
+                    <h2><span><%= orders.id%></span></h2>     
+                    <h2><span><%= orders.completed ? "completed" : "" %></span></h2>    
+                    <a href="/orders/order_details/<%= orders.id %> " class="btn-table" >detail</a>            
+                </div>
+                <% })  %> 
+                <!-- <h2><span>Total: </span> <% %> </h2> -->
+                <a href="/" class="btn">More Foods</a>
+                <!-- <input type="submit" value="completed" class="btn"> -->
+            <% }else{%>
+                <h3 class="heading"> Don't have Orders Completed </h3>
+                <a href="/" class="btn">Going Buy!</a>
+            <% } %> 
+        </form>
+            
+        <% if (locals.error) { %>
+            <p><%=message%> </p>
+        <% } %> 
+    </div>
+</section>

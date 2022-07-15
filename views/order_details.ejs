@@ -1,0 +1,30 @@
+<section class="order" id="order">
+    <div class="row">     
+        <div class="image">
+            <img src="/images/orders.png" alt="">
+        </div>  
+        <% order.food = order.food.map(item=>{
+            return item.foodID
+        })
+        /* console.log(order.food) */ %> 
+        
+        <form>
+            <h1 class="heading"> <span>Orders</span> Details </h1>
+            
+            <% food.forEach(foodorder => {%> 
+            <div class="inputBox">
+                <h2><span><%= order.food.includes(foodorder.id) ? foodorder.name : "" %></span>  </h2>     
+                <h2><span><%= order.food.includes(foodorder.id) ? foodorder.price : "" %></span>  </h2>                
+            </div>
+            <% })  %> 
+            <!-- <h2><span>Total: </span> <% %> </h2> -->
+            <a href="/orders/completed" class="btn">come back</a>
+            <!-- <input type="submit" value="completed" class="btn"> -->
+            
+        </form>
+            
+        <% if (locals.error) { %>
+            <p><%=message%> </p>
+        <% } %> 
+    </div>
+</section>

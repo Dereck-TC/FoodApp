@@ -11,35 +11,42 @@ class OrdersController{
             include:{
                 food:{
                     include:{
-                        food:{
-                            name:true
-                        }
+                        food:true
                     }
                 }
             }
         });
         // order.food.forEach(order => {
-        const foodorder = order.food[1].foodID;
-        console.log("foodorder" + foodorder);
-        // for(let i = 0 i){
-
-        // }
-        // const food = await client.food.findMany({
-        //     where:{
-        //         include:{
-        //             order:{
-        //                 userID:2
-        //             }
-        //         }
-        //     }
-        // });
-        // });
-        
-        console.log(order);
+        const food = await client.food.findMany();
+        // console.log(order);
         // console.log(food);
         return res.render("order",{
             order,food
         });
+    }
+
+    static async getDetailOrder(req,res){
+        try {
+            const order = await client.order.findUnique({
+                where:{
+                    id:parseInt(req.params.id)
+                },
+                include:{
+                    food:{
+                        include:{
+                            food:true
+                        }
+                    }
+                }
+            });
+            const food = await client.food.findMany();
+            return res.render("order_details",{
+                order,food
+            });
+           
+        } catch (error) {
+            
+        }
     }
 
     static async getCompletedOrders(req, res){
@@ -94,7 +101,7 @@ class OrdersController{
         });
             
         //actualizamos data:{activeOrder:newOrder.id}
-        const updateOrder = await client.order.update({
+        const updateOrder = await client.user.update({
             data:{
                 activeOrder:newOrder.id
             },

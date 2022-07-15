@@ -9,11 +9,14 @@ const router = Router();
 // }));
 
 router.get("/",FoodController.getAll);
+router.get("/:id",FoodController.getFilterFood);
 router.get("/addFood",FoodController.getAddForm);
 router.post("/addFood",FoodController.add);
 router.get("/edit/:id",FoodController.getEditForm);
 router.post("/edit/:id", FoodController.edit);
 router.get("/delete/:id", FoodController.delete);
+router.post("/addCategory",FoodController.addCategory);
+router.get("/admin/categories",FoodController.getAllCategories);
 
 
 module.exports = router;

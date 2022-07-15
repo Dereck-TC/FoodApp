@@ -15,9 +15,38 @@ class FoodController{
             }
         });
         const categories = await client.category.findMany();
-        //console.log(food);
+        console.log(food);
         return res.render("home",{
             food,categories
+        });
+    }
+
+    static async getFilterFood(req,res){
+        const category = await client.category.findUnique({
+            where:{
+                id:1
+            }, 
+            include:{
+                categories:{
+                    include:{
+                        food:true
+                    }
+                }
+            }
+        });
+        const food = await client.food.findMany({
+            include:{
+                categories:{
+                    include:{
+                        category:true
+                    }
+                }
+            }
+        });
+        const categories = await client.category.findMany();
+        //console.log(food);
+        return res.render("home",{
+            food,category,categories
         });
     }
 
@@ -66,6 +95,13 @@ class FoodController{
         }
     }
 
+    static async getAllCategories(req,res){
+        const category = await client.category.findMany();
+        return res.render("admin/categories",{
+            category
+        });
+    }
+
     static async addCategory(req,res){
         try {
             const category = await client.category.create({ 
@@ -73,11 +109,11 @@ class FoodController{
             });
             console.log(category);
             await req.flash("success","category added successfully");
-            return res.redirect("/admin/addFood");
+            return res.redirect("/admin/categories");
         } catch (error) {
             console.log(error);
             await req.flash("error","Error creating");
-            return res.redirect("/admin/addfood");
+            return res.redirect("/admin/categories");
         }
     }
 
